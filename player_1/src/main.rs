@@ -15,8 +15,9 @@ mod key_event;
 
 #[tokio::main]
 async fn main() -> Result<(), io::ErrorKind> {
-    let mut socket = UDP::UdpStream::listen("0.0.0.0:8080").await.unwrap();
+    let my_addr = UDP::make_ipv4_addr((0, 0, 0, 0), 8080);
     let peer_addr = UDP::make_ipv4_addr((172, 16, 100, 197), 8080);
+    let mut socket = UDP::UdpStream::listen(&my_addr.to_string()).await.unwrap();
     let (tx, rx): (common_lib::Sender<GameData>, common_lib::Receiver<GameData>) =
         tokio::sync::mpsc::channel(100);
     spawn(async move {

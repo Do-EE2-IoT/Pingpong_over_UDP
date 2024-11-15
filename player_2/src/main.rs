@@ -13,8 +13,10 @@ mod game;
 
 #[tokio::main]
 async fn main() -> Result<(), io::ErrorKind> {
-    let mut socket = UDP::UdpStream::listen("0.0.0.0:8080").await.unwrap();
+    let my_addr = UDP::make_ipv4_addr((0, 0, 0, 0), 8080);
     let peer_addr = UDP::make_ipv4_addr((172, 16, 100, 250), 8080);
+    let mut socket = UDP::UdpStream::listen(&my_addr.to_string()).await.unwrap();
+    
     let (tx, rx): (Sender<UserCommand>, Receiver<UserCommand>) = tokio::sync::mpsc::channel(100);
     let (tx_game_data, mut rx_game_data): (
         common_lib::Sender<GameData>,
