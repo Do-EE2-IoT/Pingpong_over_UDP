@@ -9,7 +9,7 @@ pub mod UDP {
     use tokio::net::UdpSocket;
 
     pub struct UdpStream {
-        socket: UdpSocket,
+        pub socket: UdpSocket,
     }
 
     pub fn make_ipv4_addr(ipv4: (u8, u8, u8, u8), port: u16) -> SocketAddrV4 {
