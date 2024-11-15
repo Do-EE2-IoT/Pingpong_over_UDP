@@ -1,0 +1,10 @@
+[package]
+name = "player_2"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+library = {path = "../library"}
+ggez = "0.5.1"
+rand = "0.7.3"
+crossterm = "0.23"

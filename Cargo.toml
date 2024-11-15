@@ -1,0 +1,8 @@
+[workspace]
+
+members = [ "library","player_1"
+   
+, "player_2"]
+
+
+[workspace.dependencies]
